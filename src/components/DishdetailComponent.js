@@ -12,6 +12,9 @@ export default class Dishdetail extends Component {
     }
 
 renderDish(dish) {
+  
+  console.log('dish')
+  console.log(dish)
         if (dish != null)
             return(
                 <Card>
@@ -33,7 +36,9 @@ displayComments(comments){
     return comments.map( c => {
       return (<div>           
       <div> {c.comment} </div> 
-      <div> -- {c.author} , <span>Date : {c.date}</span></div></div>)
+      <div> -- {c.author} , <span>Date : {c.date}
+      {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(c.date)))}
+      </span></div></div>)
     })
   } else {
     return (<div>No Comments !!</div>)
@@ -41,15 +46,16 @@ displayComments(comments){
 }
 
 render(){
+  console.log('selectedDish'+ this.props.selectedDish)
     return (<div>
               <div className="row">
                             <div  className="col-12 col-md-5 m-1"> 
-                              {this.props.selectedDish && this.renderDish(this.props.selectedDish)}                              
+                              {this.props.dish && this.renderDish(this.props.dish)}                              
                             </div>
                             <div className="col-12 col-md-5 m-1">                            
                                <div className="row">
                                <h4>Comment :-</h4> 
-                               {this.props.selectedDish && this.displayComments(this.props.selectedDish.comments)}
+                               {this.props.dish && this.displayComments(this.props.dish.comments)}
                                 </div>
                             </div>
                           </div>

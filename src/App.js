@@ -2,20 +2,22 @@ import React ,{Component} from "react";
 import "./style.css";
 import Menu from './components/MenuComponent';
 import { DISHES } from './shared/dishes';
+import Main from './components/MainComponent';
 
 import { Navbar, NavbarBrand } from 'reactstrap';
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      dishes: DISHES
-    };
+    super(props);    
   }
 
   render(){
     return (
-    <div className="container">
+
+      <div className="App">
+        <Main />
+      </div>
+    /*<div className="container">
       <div className="App">
         <Navbar dark color="primary">
           <div className="container">
@@ -24,7 +26,8 @@ export default class App extends Component {
         </Navbar>
       </div>
      <Menu dishes={this.state.dishes} />
-    </div>)
+    </div>*/)
   }
 }
+
 
