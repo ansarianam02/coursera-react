@@ -42,8 +42,7 @@ const Dishdetail = (props) =>{
                             </div>
                             <div className="col-12 col-md-5 m-1">                            
                                <div className="row">
-                               <h4>Comment :-</h4> 
-                               
+                               <h4>Comment :-</h4>                                
                                <RenderComments comments={props.dish ? props.dish.comments : []}/>
                                 </div>
                             </div>
