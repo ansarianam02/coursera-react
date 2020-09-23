@@ -2,19 +2,8 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     CardTitle } from 'reactstrap';
 
-export default class Dishdetail extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          selectedDish: null
-        }
-    }
-
-renderDish(dish) {
-  
-  console.log('dish')
-  console.log(dish)
+function RenderDish({dish}){
         if (dish != null)
             return(
                 <Card>
@@ -31,8 +20,8 @@ renderDish(dish) {
             );
     }
 
-displayComments(comments){
-  if(comments){  
+function RenderComments({comments}){
+  if(comments && comments.length > 0){  
     return comments.map( c => {
       return (<div>           
       <div> {c.comment} </div> 
@@ -45,21 +34,21 @@ displayComments(comments){
   }
 }
 
-render(){
-  console.log('selectedDish'+ this.props.selectedDish)
-    return (<div>
+const Dishdetail = (props) =>{ 
+  return (<div>
               <div className="row">
                             <div  className="col-12 col-md-5 m-1"> 
-                              {this.props.dish && this.renderDish(this.props.dish)}                              
+                              <RenderDish dish={props.dish} />                              
                             </div>
                             <div className="col-12 col-md-5 m-1">                            
                                <div className="row">
                                <h4>Comment :-</h4> 
-                               {this.props.dish && this.displayComments(this.props.dish.comments)}
+                               
+                               <RenderComments comments={props.dish ? props.dish.comments : []}/>
                                 </div>
                             </div>
                           </div>
             </div>)
 }
 
-}
+export default Dishdetail; 

@@ -4,40 +4,22 @@ import Dishdetail from './DishdetailComponent';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     CardTitle } from 'reactstrap';
 
-class Menu extends Component {
 
-    constructor(props) {
-        super(props);
-     }
-
-    renderDish(dish) {
-        if (dish != null)
-            return(
-                <Card>
-                    <CardImg top src={dish.image} alt={dish.name} />
-                    <CardBody>
-                      <CardTitle>{dish.name}</CardTitle>
-                      <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
-            );
-        else
-            return(
-                <div>NO DISH SELECTED</div>
-            );
-    }
-
-    render() {
-        const menu = this.props.dishes.map((dish) => {
-            return (
-              <div  className="col-12 col-md-5 m-1">
-                <Card key={dish.id}
-                  onClick={() => this.props.onDishSelect(dish)}>
+     function Renderdish({dish , onDishSelect}){
+       return ( <Card key={dish.id}
+                  onClick={() => onDishSelect(dish)}>
                   <CardImg width="100%" src={dish.image} alt={dish.name} />
                   <CardImgOverlay>
                       <CardTitle>{dish.name}</CardTitle>
                   </CardImgOverlay>
-                </Card>
+                </Card>)
+     }
+
+    const Menu = (props) => {
+        const menu = props.dishes.map((dish) => {
+            return (
+              <div  className="col-12 col-md-5 m-1">
+                <Renderdish dish={dish} onDishSelect={props.onDishSelect}/>
               </div>
             );
         });
@@ -50,7 +32,6 @@ class Menu extends Component {
             </div>
         );
     }
-}
 
 export default Menu
 
